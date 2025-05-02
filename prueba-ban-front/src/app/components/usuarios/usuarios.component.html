@@ -1,0 +1,35 @@
+<div class="card text-bg-light mb-3">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+    <button class="btn btn-primary my-2" routerLink="/usuarios/form">Crear</button>
+    <div class="alert alert-info" *ngIf="usuarios?.length==0">
+      No hay usuarios en el sistema.
+    </div>
+    <table class="table table-hover table-striped" *ngIf="usuarios?.length>0">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>nombre</th>
+          <th>apellido</th>
+          <th>creado en</th>
+          <th>editar</th>
+          <th>eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{usuario.id}}</td>
+          <td>{{usuario.nombre | uppercase}}</td>
+          <td>{{usuario.apellido | uppercase}}</td>
+          <td>{{usuario.createAt | date: 'yyyy - MM - dd'}}</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" [routerLink]="['/usuarios/form', usuario.id]">editar</button>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminar(usuario)">eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

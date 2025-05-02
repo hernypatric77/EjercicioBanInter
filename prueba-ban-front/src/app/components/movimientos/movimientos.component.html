@@ -1,0 +1,99 @@
+<div class="card text-bg-light mb-3"  *ngIf="usuario === null">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body w-50 mx-auto">
+    <form>
+      <div class="form-group">
+        <label for="codigo">Ingrese código:</label>
+        <input type="text" name="codigo" class="form-control" [(ngModel)]="codigo" maxlength="10">
+        <div class="alert alert-danger" *ngIf="error">
+          {{ error }}
+        </div>
+        <button type="button" class="btn btn-primary my-2"
+        (click)="buscar()">
+         Buscar
+      </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card text-bg-light mb-3" *ngIf="usuario">
+  <div class="card-header">MOVIMIENTOS DEL {{usuario.tipoUsuario}}</div>
+  <div class="card-body w-50 mx-auto bg-secondary-subtle">
+    <button class="btn btn-secondary my-2" (click)="recargarPagina()">Nueva búsqueda</button>
+    <br/>
+    <div class="row">
+      <div class="col-2">
+        <label class="fw-bold">Nombre:</label>
+      </div>
+      <div class="col-4">
+          <label>{{usuario.nombre}}</label>
+      </div>
+      <div class="col-2">
+        <label class="fw-bold">Apellido:</label>
+      </div>
+      <div class="col-4">
+          <label>{{usuario.apellido}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <label class="fw-bold">Edad:</label>
+      </div>
+      <div class="col-4">
+          <label>{{usuario.edad}}</label>
+      </div>
+      <div class="col-2">
+        <label class="fw-bold">N° cuenta:</label>
+      </div>
+      <div class="col-4">
+          <label>{{usuario.numCuenta}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="fw-bold" *ngIf="usuario.tipoUsuario === 'CLIENTE'">Fecha creación cuenta:</label>
+        <label class="fw-bold" *ngIf="usuario.tipoUsuario === 'EMPLEADO'">Cargo dentro de la empresa:</label>
+      </div>
+      <div class="col-8">
+          <label *ngIf="usuario.tipoUsuario === 'CLIENTE'">{{usuario.fechaCreacion}}</label>
+          <label *ngIf="usuario.tipoUsuario === 'EMPLEADO'">{{usuario.cargoEmpleado}}</label>
+      </div>
+    </div>
+    <hr class="my-3">
+    <div class="d-flex justify-content-center">
+      <table class="table table-hover table-striped" style="width: 90%;" *ngIf="usuario.movimientos?.length>0">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th >Tipo</th>
+            <th style="text-align: right;">Valor</th>
+            <th>Descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let det of usuario.movimientos">
+            <td>{{det.id}}</td>
+            <td>{{det.tipoMovimiento === 'D' ? 'DÉBITO' : 'CRÉDITO'}}</td>
+            <td [ngClass]="{'text-success': det.tipoMovimiento === 'C', 'text-danger': det.tipoMovimiento === 'D'}" style="text-align: right;">
+              {{(det.tipoMovimiento === 'C' ? '+' : '-') + (det.valor | currency:'USD':'symbol':'1.2-2')}}
+            </td>
+            <td>{{det.descripcion}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="table-dark fw-bold">
+            <td></td>
+            <td></td>
+            <td class="text-end">
+              <span>TOTAL: </span>
+              <span>{{calcularTotal() | currency:'USD':'symbol':'1.2-2'}}</span>
+            </td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+

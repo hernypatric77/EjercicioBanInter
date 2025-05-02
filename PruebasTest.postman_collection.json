@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "85ce39c9-e58d-4d87-bacc-85d873ba3ae3",
+		"name": "PruebasTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23433702",
+		"_collection_link": "https://restless-escape-901617.postman.co/workspace/Team-Workspace~29ec57e3-1427-478a-8673-788363c424e5/collection/23433702-85ce39c9-e58d-4d87-bacc-85d873ba3ae3?action=share&source=collection_link&creator=23433702"
+	},
+	"item": [
+		{
+			"name": "crear-mov-error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"identiBeneficiario\": \"1716983562\",\r\n    \"identiOrdenante\": \"1234567890\",\r\n    \"valor\": 700\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/movimientos/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"movimientos",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear-movimiento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"identiBeneficiario\": \"1716983562\",\r\n    \"identiOrdenante\": \"1234567890\",\r\n    \"valor\": 499.99\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/movimientos/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"movimientos",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista-movimientos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/filtrar/1716983562",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"filtrar",
+						"1716983562"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

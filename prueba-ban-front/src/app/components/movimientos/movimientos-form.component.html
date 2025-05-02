@@ -1,0 +1,32 @@
+<div class="card text-bg-light mb-3"  *ngIf="movimiento === null">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body w-50 mx-auto">
+    <form>
+      <div class="form-group">
+        <label for="codigo">Identificación ordenante:</label>
+        <input type="text" name="codigo" class="form-control" [(ngModel)]="codigo" maxlength="10">
+        <div class="alert alert-danger" *ngIf="error">
+          {{ error }}
+        </div>
+
+        <label for="codigo">Identificación beneficiario:</label>
+        <input type="text" name="codigo" class="form-control" [(ngModel)]="codigo" maxlength="10">
+        <div class="alert alert-danger" *ngIf="error">
+          {{ error }}
+        </div>
+
+        <label for="codigo">Valor transferir:</label>
+        <input type="text" name="codigo" class="form-control" [(ngModel)]="codigo" maxlength="10">
+        <div class="alert alert-danger" *ngIf="error">
+          {{ error }}
+        </div>
+
+        <button type="button" class="btn btn-primary my-2"
+        (click)="buscar()">
+         Buscar
+      </button>
+      </div>
+    </form>
+  </div>
+</div>
+
