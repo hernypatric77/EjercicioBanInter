@@ -1,28 +1,42 @@
 <div class="card text-bg-light mb-3"  *ngIf="movimientoInt === null">
   <div class="card-header">{{titulo}}</div>
   <div class="card-body w-50 mx-auto">
-    <form>
+    <form #miFormulario="ngForm">
       <div class="form-group">
         <label for="ordenante">Identificación ordenante:</label>
-        <input type="text" name="ordenante" class="form-control" [(ngModel)]="reqMovimiento.identiOrdenante" maxlength="10">
-        <div class="alert alert-danger" *ngIf="error">
-          {{ error }}
-        </div>
+        <input type="text" id="ordenante"
+            name="ordenante" class="form-control"
+            [(ngModel)]="reqMovimiento.identiOrdenante"
+            maxlength="10"
+            #ordenante="ngModel"
+            required="true" >
+          <div class="alert alert-danger" *ngIf="ordenante.invalid && ordenante.touched">
+            El numero de identificación es obligatorio.
+          </div>
 
         <label for="beneficiario">Identificación beneficiario:</label>
-        <input type="text" name="beneficiario" class="form-control" [(ngModel)]="reqMovimiento.identiBeneficiario" maxlength="10">
-        <div class="alert alert-danger" *ngIf="error">
-          {{ error }}
+        <input type="text" id="beneficiario"
+          name="beneficiario" class="form-control"
+          [(ngModel)]="reqMovimiento.identiBeneficiario"
+          maxlength="10"
+          #beneficiario="ngModel"
+          required>
+        <div class="alert alert-danger" *ngIf="beneficiario.invalid && beneficiario.touched">
+          El numero de identificación es obligatorio.
         </div>
 
         <label for="valor">Valor transferir:</label>
-        <input type="text" name="valor" class="form-control" [(ngModel)]="reqMovimiento.valor">
-        <div class="alert alert-danger" *ngIf="error">
-          {{ error }}
-        </div>
+        <input type="text" id="valor"
+          name="valor" class="form-control"
+          [(ngModel)]="reqMovimiento.valor"
+          #valor="ngModel"
+          required>
+          <div class="alert alert-danger" *ngIf="valor.invalid && valor.touched">
+            El valor a transferir es obligatorio.
+          </div>
 
         <button type="button" class="btn btn-primary my-2"
-        (click)="guardarMovimiento()">
+        (click)="guardarMovimiento()" [disabled]="miFormulario.invalid">
          Guardar
       </button>
       </div>
