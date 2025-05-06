@@ -1,32 +1,97 @@
-<div class="card text-bg-light mb-3"  *ngIf="movimiento === null">
+<div class="card text-bg-light mb-3"  *ngIf="movimientoInt === null">
   <div class="card-header">{{titulo}}</div>
   <div class="card-body w-50 mx-auto">
     <form>
       <div class="form-group">
-        <label for="codigo">Identificación ordenante:</label>
-        <input type="text" name="codigo" class="form-control" [(ngModel)]="codigo" maxlength="10">
+        <label for="ordenante">Identificación ordenante:</label>
+        <input type="text" name="ordenante" class="form-control" [(ngModel)]="reqMovimiento.identiOrdenante" maxlength="10">
         <div class="alert alert-danger" *ngIf="error">
           {{ error }}
         </div>
 
-        <label for="codigo">Identificación beneficiario:</label>
-        <input type="text" name="codigo" class="form-control" [(ngModel)]="codigo" maxlength="10">
+        <label for="beneficiario">Identificación beneficiario:</label>
+        <input type="text" name="beneficiario" class="form-control" [(ngModel)]="reqMovimiento.identiBeneficiario" maxlength="10">
         <div class="alert alert-danger" *ngIf="error">
           {{ error }}
         </div>
 
-        <label for="codigo">Valor transferir:</label>
-        <input type="text" name="codigo" class="form-control" [(ngModel)]="codigo" maxlength="10">
+        <label for="valor">Valor transferir:</label>
+        <input type="text" name="valor" class="form-control" [(ngModel)]="reqMovimiento.valor">
         <div class="alert alert-danger" *ngIf="error">
           {{ error }}
         </div>
 
         <button type="button" class="btn btn-primary my-2"
-        (click)="buscar()">
-         Buscar
+        (click)="guardarMovimiento()">
+         Guardar
       </button>
       </div>
     </form>
+  </div>
+</div>
+
+<div class="card text-bg-light mb-3" *ngIf="movimientoInt!==null">
+  <div class="card-header">MOVIMIENTOS DEL</div>
+  <div class="card-body w-50 mx-auto bg-secondary-subtle">
+    <button class="btn btn-secondary my-2" (click)="recargarPagina()">Regresar</button>
+    <br/>
+    <div class="row">
+      <div class="col-2">
+        <label class="fw-bold">Nombres ordenante:</label>
+      </div>
+      <div class="col-4">
+          <label>{{movimientoInt.nomOrdenante}}</label>
+      </div>
+      <div class="col-2">
+        <label class="fw-bold">N° cuenta:</label>
+      </div>
+      <div class="col-4">
+          <label>{{movimientoInt.ctaOrdenante}}</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+        <label class="fw-bold">Nombres beneficiario:</label>
+      </div>
+      <div class="col-4">
+          <label>{{movimientoInt.nomBeneficiario}}</label>
+      </div>
+      <div class="col-2">
+        <label class="fw-bold">N° cuenta:</label>
+      </div>
+      <div class="col-4">
+          <label>{{movimientoInt.ctaBeneficiario}}</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+        <label class="fw-bold">Valor:</label>
+      </div>
+      <div class="col-4">
+          <label>{{movimientoInt.valor}}</label>
+      </div>
+      <div class="col-2">
+        <label class="fw-bold">Valor:</label>
+      </div>
+      <div class="col-4">
+          <label>{{movimientoInt.valorTexto}}</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+        <label class="fw-bold">Correo veneficiario:</label>
+      </div>
+      <div class="col-4">
+          <label>{{movimientoInt.mailBeneficiario}}</label>
+      </div>
+
+    </div>
+
+    <hr class="my-3">
+
   </div>
 </div>
 
